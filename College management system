@@ -1,0 +1,379 @@
+#include <iostream>
+
+using namespace std;
+
+class login {
+    string pass;
+
+public:
+    void loginn() {
+    cout<<"\n\n\t\t|******************************************|\n";
+    cout<<"\t\t|**|------------------------------------|**|\n";
+    cout<<"\t\t|**|                                    |**|\n";
+    cout<<"\t\t|**|          LOGIN YOUR SYSTEM         |**|\n";
+    cout<<"\t\t|**|                                    |**|\n";
+    cout<<"\t\t|**|------------------------------------|**|\n";
+    cout<<"\t\t|******************************************|\n";
+    cout<<"\n";
+    
+        cout << "ENTER YOUR PASSWORD\n";
+        cin >> pass;
+        if (pass == "JAVAD" || pass == "HAFEEZ") {
+            cout << "LOGIN SUCCESSFUL\n\n";
+        } else {
+            cout << "INCORRECT PASSWORD";
+            exit(0);
+        }
+        system("cls");
+    }
+};
+
+class student {
+public:
+    string name;
+    string father_name;
+    string department;
+    string contact_number;
+    string admission;
+
+    void inputStudentData() {
+        system("cls");
+        cout << "\t\tENTER STUDENT NAME:";
+        cin.ignore();
+        getline(cin, name);
+        cout << "\n";
+
+        cout << "\t\tENTER STUDENT FATHER NAME:";
+        getline(cin, father_name);
+        cout << "\n";
+
+        cout << "\t\tENTER DEPARTMENT:";
+        getline(cin, department);
+        cout << "\n";
+
+        cout << "\t\tENTER CONTACT NUMBER:";
+        cin >> contact_number;
+        cout << "\n";
+        
+        cout << "\t\tENTER ADMISSION DATE:";
+        cin >> admission;
+        cout << "\n";
+    }
+
+    void DisplayStudentData() {
+        cout << "\t\tSTUDENT NAME:" << name << "\n";
+        cout << "\t\tSTUDENT FATHER NAME:" << father_name << "\n";
+        cout << "\t\tDEPARTMENT:" << department << "\n";
+        cout << "\t\tCONTACT NUMBER:" << contact_number << "\n";
+        cout << "\t\ADMISSION DATE:" << admission << "\n";
+    }
+};
+
+class teacher : public student {
+public:
+    string nameee;
+    string qualification;
+    string subject;
+    string experience;
+
+    void inputTeacherData() {
+        system("cls");
+        cout << "\t\tENTER TEACHER NAME:";
+        cin.ignore();
+        getline(cin, nameee);
+        cout << "\n";
+
+        cout << "\t\tENTER QUALIFICATION:";
+        getline(cin, qualification);
+        cout << "\n";
+
+        cout << "\t\tENTER SUBJECT:";
+        getline(cin, subject);
+        cout << "\n";
+
+        cout << "\t\tENTER EXPERIENCE:";
+        getline(cin, experience);
+        cout << "\n";
+
+        cout << "\t\tENTER CONTACT NUMBER:";
+        cin >> contact_number;
+        cout << "\n";
+    }
+
+    void DisplayTeacherData() {
+        cout << "\t\tTEACHER NAME:" << nameee << "\n";
+        cout << "\t\tQUALIFICATION:" << qualification << "\n";
+        cout << "\t\tSUBJECT:" << subject << "\n";
+        cout << "\t\tEXPERIENCE:" << experience << "\n";
+        cout << "\t\tCONTACT NUMBER:" << contact_number << "\n";
+    }
+};
+
+class CollegeManagementSystem {
+    student students[100];
+    teacher teachers[100];
+    int studentCount;
+    int teacherCount;
+
+public:
+    CollegeManagementSystem() : studentCount(0), teacherCount(0) {}
+
+    void mainMenu() {
+    	while(true){
+        char choice;
+
+       cout<<"\n\n\t\t|******************************************|\n";
+    cout<<"\t\t|**|------------------------------------|**|\n";
+    cout<<"\t\t|**|                                    |**|\n";
+    cout<<"\t\t|**|      WELCOME TO COLLEGE SYSTEM     |**|\n";
+    cout<<"\t\t|**|                                    |**|\n";
+    cout<<"\t\t|**|------------------------------------|**|\n";
+    cout<<"\t\t|******************************************|\n";
+    cout<<"\n";
+
+        cout << "\t\t1. STUDENT SECTION\n";
+        cout << "\t\t2. TEACHER SECTION\n";
+        cout << "\t\t3. EXIT THE PROGRAM\n\n";
+        cout << "\t\tENTER YOUR CHOICE : ";
+        cin >> choice;
+        cout << "\n\n";
+        system("cls");
+         
+        switch (choice) {
+            case '1':
+                studentSection();
+                break;
+            case '2':
+                teacherSection();
+                break;
+            case '3':
+                cout << "THANK YOU FOR USING OUR SYSTEM\n";
+                return;
+            default:
+                cout << "\t\tINVALID CHOICE PLEASE TRY AGAIN.\n\n";
+                break;
+        }
+    }
+}
+    void studentSection() {
+        char choice;
+        while(true){
+	  cout<<"\t\t_______________________\n";	
+      cout<<"\t\t_______________________\n";
+      cout<<"\t\t_                     _\n";
+      cout<<"\t\t_                     _\n";
+      cout<<"\t\t_   STUDENT SECTION   _\n";
+      cout<<"\t\t_                     _\n";
+      cout<<"\t\t_                     _\n";
+      cout<<"\t\t_______________________\n";
+      cout<<"\t\t_______________________\n\n";
+      
+      
+        cout << "\n\n";
+        cout << "\t\t1. REGISTER NEW STUDENT \n";
+        cout << "\t\t2. DISPLAY ALL STUDENTS \n";
+        cout << "\t\t3. SEARCH SECTION       \n";
+        cout << "\t\t4. BACK TO MAIN MENU    \n\n\n";
+        cout << "\t\tENTER YOUR CHOICE:";
+        cin >> choice;
+        
+        cout << "\n\n";
+        system("cls");
+        
+        switch (choice) {
+            case '1':
+                registerNewStudent();
+                break;
+            case '2':
+                displayAllStudents();
+                break;
+            case '3':
+                searchStudent();
+                break;
+            case '4':
+                return;
+            default:
+                 cout << "\t\tINVALID CHOICE PLEASE TRY AGAIN.\n\n";
+                break;
+        }
+    }
+    
+}
+    void registerNewStudent() {
+        if (studentCount < 100) {
+            students[studentCount].inputStudentData();
+            studentCount++;
+        } else {
+            cout << "STUDENT LIST IS FULL!\n";
+        }
+        system("cls");
+    }
+
+    void displayAllStudents() {
+       
+      cout<<"\t\t_______________________\n";	
+      cout<<"\t\t_______________________\n";
+      cout<<"\t\t_                     _\n";
+      cout<<"\t\t_                     _\n";
+      cout<<"\t\t_  ALL STUDENTS DATA  _\n";
+      cout<<"\t\t_                     _\n";
+      cout<<"\t\t_                     _\n";
+      cout<<"\t\t_______________________\n";
+      cout<<"\t\t_______________________\n\n";
+    
+        for (int i = 0; i < studentCount; i++) {
+            students[i].DisplayStudentData();
+            cout<<"\n\n";
+            
+        }
+    
+    }
+
+    void searchStudent() {
+    	
+      cout<<"\t\t_______________________\n";	
+      cout<<"\t\t_______________________\n";
+      cout<<"\t\t_                     _\n";
+      cout<<"\t\t_                     _\n";
+      cout<<"\t\t_   SEARCH  STUDENT   _\n";
+      cout<<"\t\t_                     _\n";
+      cout<<"\t\t_                     _\n";
+      cout<<"\t\t_______________________\n";
+      cout<<"\t\t_______________________\n\n";
+
+        string namee;
+        cout << "ENTER THE STUDENT NAME:\n";
+        cin.ignore();
+        getline(cin, namee);
+        bool found =false;
+
+        for (int i = 0; i < studentCount; i++) {
+            if (students[i].name == namee) {
+                students[i].DisplayStudentData();
+                found=true;
+                break;
+            } 
+         }
+         if(!found){
+		 
+ 	cout<<"NO STUDENT FOUND\n";  
+        }
+ }
+ 
+       // system("cls");
+    
+
+    void teacherSection() {
+        char choice;
+        while (true) {
+        	
+      cout<<"\t\t_______________________\n";	
+      cout<<"\t\t_______________________\n";
+      cout<<"\t\t_                     _\n";
+      cout<<"\t\t_                     _\n";
+      cout<<"\t\t_   TEACHER SECTION   _\n";
+      cout<<"\t\t_                     _\n";
+      cout<<"\t\t_                     _\n";
+      cout<<"\t\t_______________________\n";
+      cout<<"\t\t_______________________\n\n";
+      
+      
+            cout << "\t\t1. REGISTER NEW TEACHER \n";
+            cout << "\t\t2. DISPLAY ALL TEACHERS \n";
+            cout << "\t\t3. SEARCH SECTION       \n";
+            cout << "\t\t4. BACK TO MAIN MENU    \n\n\n";
+            cout << "\t\tENTER YOUR CHOICE ";
+            cin >> choice;
+            system("cls");
+            switch (choice) {
+                case '1':
+                    registerNewTeacher();
+                    break;
+                case '2':
+                    displayAllTeachers();
+                    break;
+                case '3':
+                    searchTeacher();
+                    break;
+                case '4':
+                    return;
+                default:
+                    cout << "\t\tINVALID CHOICE PLEASE TRY AGAIN.\n\n";
+                    break;
+            }
+        }
+    }
+
+    void registerNewTeacher() {
+        if (teacherCount < 100) {
+            teachers[teacherCount].inputTeacherData();
+            teacherCount++;
+        } else {
+            cout << "Teacher list is full\n";
+        }
+        system("cls");
+    }
+
+    void displayAllTeachers() {
+       
+      cout<<"\t\t_______________________\n";	
+      cout<<"\t\t_______________________\n";
+      cout<<"\t\t_                     _\n";
+      cout<<"\t\t_                     _\n";
+      cout<<"\t\t_  ALL TEACHERS DATA  _\n";
+      cout<<"\t\t_                     _\n";
+      cout<<"\t\t_                     _\n";
+      cout<<"\t\t_______________________\n";
+      cout<<"\t\t_______________________\n\n";
+      
+        for (int i = 0; i < teacherCount; i++) {
+            teachers[i].DisplayTeacherData();
+            cout << "\n\n";
+        }
+  
+    }
+
+    void searchTeacher() {
+      cout<<"\t\t_______________________\n";	
+      cout<<"\t\t_______________________\n";
+      cout<<"\t\t_                     _\n";
+      cout<<"\t\t_                     _\n";
+      cout<<"\t\t_   SEARCH  TEACHER   _\n";
+      cout<<"\t\t_                     _\n";
+      cout<<"\t\t_                     _\n";
+      cout<<"\t\t_______________________\n";
+      cout<<"\t\t_______________________\n\n";
+      
+      
+        string namea;
+        cout << "ENTER THE TEACHER NAME:\n";
+        cin.ignore();
+        getline(cin, namea);
+        bool found =false;
+        
+
+        for (int i = 0; i < teacherCount; i++) {
+            if (teachers[i].nameee == namea) {
+                teachers[i].DisplayTeacherData();
+                found=true;
+                break;
+            } 
+        }
+         if(!found){
+                cout << "NO TEACHER FOUND \n ";
+            }
+    
+    }
+
+    void run() {
+        mainMenu();
+    }
+};
+
+int main() {
+    login obj;
+    obj.loginn();
+    CollegeManagementSystem cms;
+    cms.run();
+    return 0;
+}
